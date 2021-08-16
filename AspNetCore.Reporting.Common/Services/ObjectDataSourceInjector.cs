@@ -20,7 +20,9 @@ namespace AspNetCore.Reporting.Common.Services {
             var dse = new UniqueDataSourceEnumerator();
             foreach(var dataSource in dse.EnumerateDataSources(report, true)) {
                 if(dataSource is ObjectDataSource ods && ods.DataSource is Type dataSourceType) {
-                    ods.DataSource = ServiceProvider.GetRequiredService(dataSourceType);
+                    var ds = ServiceProvider.GetService(dataSourceType);
+                    if (ds != null)
+                        ods.DataSource = ds;
                 }
             }
         }

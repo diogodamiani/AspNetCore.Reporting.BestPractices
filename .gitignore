@@ -5,3 +5,11 @@
 **/wwwroot/
 **/*.user
 **/ViewerStorages/
+
+# Rider
+.idea
+
+# Sqlite
+*.db
+*.db-shm
+*.db-wal

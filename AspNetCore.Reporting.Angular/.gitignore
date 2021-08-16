@@ -229,3 +229,11 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Rider
+.idea
+
+# Sqlite
+*.db
+*.db-shm
+*.db-wal
