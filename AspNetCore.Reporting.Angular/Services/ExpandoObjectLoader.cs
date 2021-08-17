@@ -26,5 +26,10 @@ namespace AspNetCore.Reporting.Common.Services
                 JsonConvert.DeserializeObject<ExpandoObject>("{ \"Id\": 40, \"Nome\": \"def\" }"),
             };
         }
+
+        public ExpandoObject GetDataSchema()
+        {
+            return JsonConvert.DeserializeObject<ExpandoObject>("{ \"Id\": 30, \"Nome\": \"abc\" }");
+        }
     }
 }

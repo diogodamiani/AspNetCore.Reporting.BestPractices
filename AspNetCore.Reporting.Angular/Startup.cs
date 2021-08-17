@@ -5,6 +5,7 @@ using AspNetCore.Reporting.Common.Services;
 using AspNetCore.Reporting.Common.Services.Reporting;
 using DevExpress.AspNetCore;
 using DevExpress.AspNetCore.Reporting;
+using DevExpress.DataAccess.Native.ObjectBinding;
 using DevExpress.XtraReports.Web.ClientControls;
 using DevExpress.XtraReports.Web.Extensions;
 using Microsoft.AspNetCore.Authentication;
@@ -65,6 +66,9 @@ namespace AspNetCore.Reporting.Angular {
             services.AddTransient<ReportStorageWebExtension, EFCoreReportStorageWebExtension<SchoolDbContext>>();
             services.AddTransient<CourseListReportRepository>();
             services.AddTransient<MyEnrollmentsReportRepository>();
+            
+            services.AddSingleton<IResultTypedListProvider, ResultTypedListProvider>();
+
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => {
