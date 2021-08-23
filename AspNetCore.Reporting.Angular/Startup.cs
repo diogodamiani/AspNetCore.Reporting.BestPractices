@@ -66,9 +66,6 @@ namespace AspNetCore.Reporting.Angular {
             services.AddTransient<ReportStorageWebExtension, EFCoreReportStorageWebExtension<SchoolDbContext>>();
             services.AddTransient<CourseListReportRepository>();
             services.AddTransient<MyEnrollmentsReportRepository>();
-            
-            services.AddSingleton<IResultTypedListProvider, ResultTypedListProvider>();
-
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => {
