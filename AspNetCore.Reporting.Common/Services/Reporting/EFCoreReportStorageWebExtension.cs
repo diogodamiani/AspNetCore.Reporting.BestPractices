@@ -36,7 +36,8 @@ namespace AspNetCore.Reporting.Common.Services.Reporting {
             if(reportData != null) {
                 return reportData.ReportLayout;
             } else {
-                throw new DevExpress.XtraReports.Web.ClientControls.FaultException(string.Format("Could not find report '{0}'.", url));
+                //throw new DevExpress.XtraReports.Web.ClientControls.FaultException(string.Format("Could not find report '{0}'.", url));
+                return null;
             }
         }
 

@@ -21,24 +21,23 @@ namespace AspNetCore.Reporting.Common.Controllers {
 
             var expandoODS = new ObjectDataSource()
             {
-                DataSourceType = typeof(ExpandoObjectLoader),
-                DataMember = "GetData",
+                DataSourceType = typeof(ExpandoObjectSchemaLoader),
                 Constructor = new ObjectConstructorInfo(
-                    new Parameter("id", typeof(Guid), Guid.NewGuid())
+                    new Parameter("businessObjectName", typeof(string), "NomeDoBO")
                 )
             };
 
-            var compileTimeTypeODS = new ObjectDataSource()
-            {
-                DataSourceType = typeof(CompileTimeTypeLoader),
-                DataMember = "GetData",
-                Constructor = new ObjectConstructorInfo(
-                    new Parameter("id", typeof(Guid), Guid.NewGuid())
-                )
-            };
+            // var compileTimeTypeODS = new ObjectDataSource()
+            // {
+            //     DataSourceType = typeof(CompileTimeTypeLoader),
+            //     DataMember = "GetData",
+            //     Constructor = new ObjectConstructorInfo(
+            //         new Parameter("id", typeof(Guid), Guid.NewGuid())
+            //     )
+            // };
 
             dataSources.Add("ExpandoObjectLoader", expandoODS);
-            dataSources.Add("CompileTimeTypeLoader", compileTimeTypeODS);
+            // dataSources.Add("CompileTimeTypeLoader", compileTimeTypeODS);
             
             
             var modelGenerator = new ReportDesignerClientSideModelGenerator(HttpContext.RequestServices);

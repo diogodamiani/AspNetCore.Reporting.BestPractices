@@ -15,6 +15,10 @@ namespace AspNetCore.Reporting.Common.Services.Reporting {
         }
         public XtraReport GetReport(string id, ReportProviderContext context) {
             var reportLayoutBytes = reportStorageWebExtension.GetData(id);
+
+            if (reportLayoutBytes == null)
+                return new XtraReport();
+            
             using(var ms = new MemoryStream(reportLayoutBytes)) {
                 var report = XtraReport.FromXmlStream(ms);
                 dataSourceInjector.Process(report);
