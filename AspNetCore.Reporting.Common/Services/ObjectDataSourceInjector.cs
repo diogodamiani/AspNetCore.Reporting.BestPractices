@@ -22,20 +22,17 @@ namespace AspNetCore.Reporting.Common.Services {
 
         public void Process(XtraReport report) {
             var dse = new UniqueDataSourceEnumerator();
-            foreach(var dataSource in dse.EnumerateDataSources(report, true)) {
-                if(dataSource is ObjectDataSource ods && ods.DataSource is Type dataSourceType) {
+            foreach (var dataSource in dse.EnumerateDataSources(report, true))
+            {
+                if (dataSource is ObjectDataSource ods && ods.DataSource is Type dataSourceType)
+                {
                     var ds = ServiceProvider.GetService(dataSourceType);
                     if (ds != null)
-                        ods.DataSource = ds;
-                    else
                     {
-                        
-                        ConstructorInfo constructor = ObjectDataSourceFillHelper.FindConstructor(typeof(ExpandoObjectLoader), ods.Constructor.Parameters);
-                        var instance  = constructor.Invoke(GetValues(constructor.GetParameters(), ods.Constructor.Parameters));
-
-                        ods.DataSource = instance;
-                        ods.DataMember = "GetData";
+                        ods.DataSource = ds;
                     }
+                    
+                    
                 }
             }
         }

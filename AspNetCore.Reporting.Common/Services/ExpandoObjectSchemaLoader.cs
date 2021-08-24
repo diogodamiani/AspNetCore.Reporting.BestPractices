@@ -38,6 +38,11 @@ namespace AspNetCore.Reporting.Common.Services
     
     public class ExpandoObjectSchemaLoader : ITypedList
     {
+        public string BusinessObject
+        {
+            get { return _boName; }
+        }
+        
         private readonly string _boName;
 
         public ExpandoObjectSchemaLoader()
@@ -49,12 +54,33 @@ namespace AspNetCore.Reporting.Common.Services
             _boName = businessObjectName;
         }
 
+        public IEnumerable<ExpandoObject> GetData
+        {
+            get
+            {
+                return new[]
+                {
+                    new Dictionary<string, object>()
+                    {
+                        {"Id", 80},
+                        {"Nome", "abc"}
+                    }.ToExpando(),
+
+                    new Dictionary<string, object>()
+                    {
+                        {"Id", 90},
+                        {"Nome", "def"}
+                    }.ToExpando()
+                };
+            }
+        }
+        
         public PropertyDescriptorCollection GetItemProperties(PropertyDescriptor[] listAccessors)
         {
             var defaultFromSchema = new Dictionary<string, object>()
             {
                 {"Id", 0},
-                {"Nome", ""}
+                {"Nome", "xxx"}
             }.ToExpando();
 
             var pdc = new ExpandoObjectTypeDescriptionProvider()

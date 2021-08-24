@@ -24,7 +24,11 @@ namespace AspNetCore.Reporting.Common.Controllers {
                 DataSourceType = typeof(ExpandoObjectSchemaLoader),
                 Constructor = new ObjectConstructorInfo(
                     new Parameter("businessObjectName", typeof(string), "NomeDoBO")
-                )
+                ),
+                DataMember = "GetData"
+                
+                //DataSource = new ExpandoObjectSchemaLoader("NomeDoBO"),
+                //Name = "NomeDoBO",
             };
 
             // var compileTimeTypeODS = new ObjectDataSource()
