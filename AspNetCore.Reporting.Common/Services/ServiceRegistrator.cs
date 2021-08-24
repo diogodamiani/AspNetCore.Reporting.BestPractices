@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using AspNetCore.Reporting.Common.Services.Reporting;
 using DevExpress.AspNetCore.Reporting;
@@ -59,6 +60,12 @@ namespace AspNetCore.Reporting.Common.Services {
             services.AddScoped<IDataSourceWizardConnectionStringsProvider, CustomSqlDataSourceWizardConnectionStringsProvider>();
             services.AddScoped<IConnectionProviderService, CustomConnectionProviderService>();
             services.AddScoped<IConnectionProviderFactory, CustomSqlDataConnectionProviderFactory>();
+            
+            
+            TypeDescriptor.AddProvider(new BusinessObjectResultTypeDescriptionProvider(),  typeof(BusinessObjectResult));
+
+            var teste = TypeDescriptor.GetProvider(typeof(BusinessObjectResult));
+            
             return services;
         }
     }

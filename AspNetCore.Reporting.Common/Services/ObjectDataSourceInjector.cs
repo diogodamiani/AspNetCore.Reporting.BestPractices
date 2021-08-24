@@ -30,11 +30,11 @@ namespace AspNetCore.Reporting.Common.Services {
                     else
                     {
                         
-                        ConstructorInfo constructor = ObjectDataSourceFillHelper.FindConstructor(typeof(ExpandoObjectLoader), ods.Constructor.Parameters);
-                        var instance  = constructor.Invoke(GetValues(constructor.GetParameters(), ods.Constructor.Parameters));
-
-                        ods.DataSource = instance;
-                        ods.DataMember = "GetData";
+                        // ConstructorInfo constructor = ObjectDataSourceFillHelper.FindConstructor(typeof(ExpandoObjectLoader), ods.Constructor.Parameters);
+                        // var instance  = constructor.Invoke(GetValues(constructor.GetParameters(), ods.Constructor.Parameters));
+                        //
+                        // ods.DataSource = instance;
+                        // ods.DataMember = "GetData";
                     }
                 }
             }
