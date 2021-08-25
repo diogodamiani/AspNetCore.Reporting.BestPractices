@@ -56,7 +56,7 @@ namespace AspNetCore.Reporting.Common.Services
                 {"Id", 0},
                 {"Nome", ""}
             }.ToExpando();
-
+            
             var pdc = new ExpandoObjectTypeDescriptionProvider()
                 .GetTypeDescriptor(typeof(ExpandoObject), defaultFromSchema)
                 .GetProperties();

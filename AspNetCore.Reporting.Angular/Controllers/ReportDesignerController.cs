@@ -41,7 +41,7 @@ namespace AspNetCore.Reporting.Common.Controllers {
             
             
             var modelGenerator = new ReportDesignerClientSideModelGenerator(HttpContext.RequestServices);
-            var model = modelGenerator.GetModel(reportUrl, dataSources, "/DXXRDAngular", "/DXXRDVAngular",
+            var model = modelGenerator.GetModel($"{reportUrl}@designer", dataSources, "/DXXRDAngular", "/DXXRDVAngular",
                 "/DXXQBAngular");
             model.ReportPreviewSettings.ExportSettings.UseAsynchronousExport = true;
             model.ReportPreviewSettings.ExportSettings.UseSameTab = true;

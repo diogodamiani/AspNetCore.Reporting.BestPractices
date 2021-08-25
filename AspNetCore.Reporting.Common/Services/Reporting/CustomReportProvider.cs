@@ -13,15 +13,24 @@ namespace AspNetCore.Reporting.Common.Services.Reporting {
             this.reportStorageWebExtension = reportStorageWebExtension;
             this.dataSourceInjector = dataSourceInjector;
         }
-        public XtraReport GetReport(string id, ReportProviderContext context) {
-            var reportLayoutBytes = reportStorageWebExtension.GetData(id);
+        public XtraReport GetReport(string id, ReportProviderContext context)
+        {
+            var reportIdentifier = id.Split('@');
+
+            var reportId = reportIdentifier[0];
+            var isFromDesigner = reportIdentifier.Length > 1;
+
+            var reportLayoutBytes = reportStorageWebExtension.GetData(reportId);
 
             if (reportLayoutBytes == null)
                 return new XtraReport();
             
             using(var ms = new MemoryStream(reportLayoutBytes)) {
                 var report = XtraReport.FromXmlStream(ms);
-                dataSourceInjector.Process(report);
+                
+                if (!isFromDesigner)
+                    dataSourceInjector.Process(report);
+                
                 return report;
             }
         }
